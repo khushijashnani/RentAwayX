@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "291847153200",
+    "firebase_url": "https://rentaway-a7266.firebaseio.com",
+    "project_id": "rentaway-a7266",
+    "storage_bucket": "rentaway-a7266.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291847153200:android:899a1ec6a3c4b415",
+        "android_client_info": {
+          "package_name": "com.project.rentaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291847153200-lt5b8p9rosa3likkto1kjbv4h4fftd2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.rentaway",
+            "certificate_hash": "dc0429636a5c0720aec615dfe31fba4a1881e802"
+          }
+        },
+        {
+          "client_id": "291847153200-m1vt070f5ah0b8j04s1tkcfj732o87pk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBJA_L3B-YQC69hR2TJAQYhU8mKROCK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291847153200-m1vt070f5ah0b8j04s1tkcfj732o87pk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

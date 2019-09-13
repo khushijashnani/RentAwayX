@@ -6,6 +6,8 @@
     <string name="txt1">Not yet registered?</string>
     <string name="signup">SignUp</string>
     <string name="email_id">EMAIL ID</string>
+    <string name="phone_no">PHONE NO.</string>
+    <string name="register">Register</string>
 
 
 </resources>

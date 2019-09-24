@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5B76A"
-    android:backgroundTint="#F1D7DD"
+    android:backgroundTint="#F7E5E9"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".navigationDrawer"
     tools:ignore="ExtraText"
     tools:showIn="@layout/app_bar_navigation_drawer">
 
+    <FrameLayout
+        android:id="@+id/screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </RelativeLayout>

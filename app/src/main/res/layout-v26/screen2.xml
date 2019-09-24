@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5B76A"
-    android:backgroundTint="#F1D7DD"
+    android:backgroundTint="#F7E5E9"
     android:orientation="vertical">
 
     <EditText

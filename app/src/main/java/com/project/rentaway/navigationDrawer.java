@@ -21,6 +21,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.widget.TextView;
@@ -46,7 +49,6 @@ public class navigationDrawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,13 +61,10 @@ public class navigationDrawer extends AppCompatActivity
         user=firebaseAuth.getCurrentUser();
         View headerView = navigationView.getHeaderView(0);
         TextView email = (TextView) headerView.findViewById(emailUser);
-        TextView name = (TextView) headerView.findViewById(R.id.nameUser);
+        //TextView name = (TextView) headerView.findViewById(R.id.nameUser);
         String user_email=user.getEmail();
-
         email.setText(user_email);
 
-        
-        
         
     }
 
@@ -107,15 +106,16 @@ public class navigationDrawer extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Fragment fragment = null;
+
         int id = item.getItemId();
 
         if (id == R.id.settings) {
-            // Handle the camera action
+            fragment = new Settings();
         }
         else if (id == R.id.log_out) {
 
           firebaseAuth=FirebaseAuth.getInstance();
-
           if(firebaseAuth.getCurrentUser()==null)
           {
               finish();
@@ -135,8 +135,18 @@ public class navigationDrawer extends AppCompatActivity
         } else if (id == R.id.contacted_properties) {
 
         } else if (id == R.id.house_icon) {
-
+            fragment = new RentMyProperty();
         }
+
+        if(fragment!=null){
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.screen,fragment);
+            fragmentTransaction.commit();
+        }
+
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

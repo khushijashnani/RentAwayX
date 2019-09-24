@@ -5,8 +5,8 @@
     android:id="@+id/screen1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5B76A"
-    android:backgroundTint="#F1D7DD"
+    android:background="#E2D5CF"
+    android:backgroundTint="#F7E5E9"
     tools:context=".MainActivity">
 
     <EditText

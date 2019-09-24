@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -63,29 +64,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void userLogin(){
-        String username = user.getText().toString().trim();
+    private void userLogin() {
+        String email = user.getText().toString().trim();
         String password = pass.getText().toString().trim();
-        if(TextUtils.isEmpty(username)){
-            toastMessage("Please enter the Username.");
+        if (TextUtils.isEmpty(email)) {
+            toastMessage("Please enter the email.");
             return;
         }
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             toastMessage("Please enter the Password.");
             return;
         }
-        firebaseAuth.signInWithEmailAndPassword(username,password)
+
+        firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
                             finish();
+
+                            Intent intentNew=new Intent(MainActivity.this,navigationDrawer.class);
+                                    startActivity(intentNew);
                             //startActivity(new Intent(getApplicationContext(),mainPage.class));
                         }
+                        else
+                        {
+                            toastMessage("Try again");
+                        }
+
                     }
                 });
 
     }
+
     private void toastMessage(String message){
         Toast.makeText(MainActivity.this,message,Toast.LENGTH_SHORT).show();
     }

@@ -55,12 +55,13 @@ public class signUpPage extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful())
-                                {
+                                if(task.isSuccessful()) {
                                     toastMessage("User registered successfully.");
+                                    Log.d(TAG, "onComplete: new User registered");
                                     finish();
-                                    //Intent intent = new Intent(this,mainPage.class);
-                                    //startActivity(intent);
+
+                                    Intent intent=new Intent(signUpPage.this,navigationDrawer.class);
+                                    startActivity(intent);
                                 }
                                 else
                                 {

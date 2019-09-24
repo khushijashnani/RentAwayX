@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 
+import static com.project.rentaway.R.id.emailUser;
 import static com.project.rentaway.R.id.nav_view;
 
 public class navigationDrawer extends AppCompatActivity
@@ -33,6 +34,7 @@ public class navigationDrawer extends AppCompatActivity
     NavigationView navigationView;
     Toolbar toolbar=null;
     FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
 
 
@@ -52,6 +54,19 @@ public class navigationDrawer extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        View headerView = navigationView.getHeaderView(0);
+        TextView email = (TextView) headerView.findViewById(emailUser);
+        TextView name = (TextView) headerView.findViewById(R.id.nameUser);
+        String user_email=user.getEmail();
+
+        email.setText(user_email);
+
+        
+        
+        
     }
 
     @Override

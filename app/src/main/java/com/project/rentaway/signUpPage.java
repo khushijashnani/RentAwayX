@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.FirebaseUser;
 
 public class signUpPage extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class signUpPage extends AppCompatActivity {
     private Button register1;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
+    private FirebaseUser user2 ;
 
     private void registerUser(){
 
@@ -50,18 +52,37 @@ public class signUpPage extends AppCompatActivity {
             toastMessage("Please enter the Username.");
             return;
         }
+        progressDialog.setMessage("Registering user...");
+        progressDialog.show();
+
+
 
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
-                                    toastMessage("User registered successfully.");
-                                    Log.d(TAG, "onComplete: new User registered");
+                                    user2 = firebaseAuth.getCurrentUser();
+                                    ((FirebaseUser) user2).sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+
+                                                        toastMessage("User registered successfully. Please check your email for verification");
+                                                        Log.d(TAG, "onComplete: new User registered");
+                                                        Log.d(TAG, "Email sent.");
+                                                        toastMessage("Verification email sent.");
+                                                    }
+                                                    else
+                                                    {
+                                                        Toast.makeText(signUpPage.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
                                     finish();
 
-                                    Intent intent=new Intent(signUpPage.this,navigationDrawer.class);
-                                    startActivity(intent);
                                 }
                                 else
                                 {
@@ -78,13 +99,14 @@ public class signUpPage extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen2);
         Log.d(TAG, "onCreate: Starting...");
 
-        //progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         user1 =(EditText)findViewById(R.id.userid);
         pass1 =(EditText)findViewById(R.id.password);
         register1 =(Button)findViewById(R.id.register);
@@ -92,10 +114,7 @@ public class signUpPage extends AppCompatActivity {
         phone1=(EditText)findViewById(R.id.phoneNo);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser()!=null){
-            finish();
-           // startActivity(new Intent(getApplicationContext(),mainPage.class));
-        }
+
         register1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

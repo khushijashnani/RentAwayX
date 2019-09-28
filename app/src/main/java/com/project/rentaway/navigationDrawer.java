@@ -40,7 +40,6 @@ public class navigationDrawer extends AppCompatActivity
     FirebaseUser user;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +63,6 @@ public class navigationDrawer extends AppCompatActivity
         //TextView name = (TextView) headerView.findViewById(R.id.nameUser);
         String user_email=user.getEmail();
         email.setText(user_email);
-
-        
     }
 
     @Override
@@ -78,9 +75,10 @@ public class navigationDrawer extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation_drawer, menu);
         return false;
     }
@@ -107,9 +105,7 @@ public class navigationDrawer extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         Fragment fragment = null;
-
         int id = item.getItemId();
-
         if (id == R.id.settings) {
             fragment = new Settings();
         }
@@ -128,7 +124,6 @@ public class navigationDrawer extends AppCompatActivity
             finish();
 
             startActivity(new Intent(navigationDrawer.this,MainActivity.class));
-
 
         } else if (id == R.id.favourites) {
 

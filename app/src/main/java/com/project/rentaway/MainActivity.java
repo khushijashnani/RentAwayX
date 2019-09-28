@@ -3,6 +3,7 @@ package com.project.rentaway;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText user,pass;
     private Button signup,login;
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
     private static final String TAG ="MainActivity";
 
 
@@ -33,23 +35,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started");
 
-
+        progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
         user =(EditText)findViewById(R.id.userid);
         pass =(EditText)findViewById(R.id.password);
         signup =(Button)findViewById(R.id.signupbtn);
         login = (Button) findViewById(R.id.btnlogin);
 
-        if(firebaseAuth.getCurrentUser()!=null){
-            finish();
-           // startActivity(new Intent(getApplicationContext(),mainPage.class));
+        if(firebaseAuth.getCurrentUser()!=null && firebaseAuth.getCurrentUser().isEmailVerified()){
+            //finish();
+            startActivity(new Intent(MainActivity.this,navigationDrawer.class));
         }
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Clicked signup");
-                finish();
                 Intent intent = new Intent(MainActivity.this,signUpPage.class);
                 startActivity(intent);
             }
@@ -76,17 +77,25 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        progressDialog.setMessage("Logging in...");
+        progressDialog.show();
+
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            if(firebaseAuth.getCurrentUser().isEmailVerified())
+                            {
+                                finish();
+                                Intent intentNew=new Intent(MainActivity.this,navigationDrawer.class);
+                                startActivity(intentNew);
+                            }
+                            else
+                            {
+                                toastMessage("Please verify your email address.");
+                            }
 
-                            finish();
-
-                            Intent intentNew=new Intent(MainActivity.this,navigationDrawer.class);
-                                    startActivity(intentNew);
-                            //startActivity(new Intent(getApplicationContext(),mainPage.class));
                         }
                         else
                         {

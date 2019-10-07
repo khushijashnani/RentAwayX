@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class signUpPage extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private FirebaseUser user2 ;
+    private TextView text4,text5,text6,text7;
 
     private void registerUser(){
 
@@ -110,9 +112,13 @@ public class signUpPage extends AppCompatActivity {
         user1 =(EditText)findViewById(R.id.userid);
         pass1 =(EditText)findViewById(R.id.password);
         register1 =(Button)findViewById(R.id.register);
-        email1 =(EditText)findViewById(R.id.emailid);
+        email1 = (EditText)findViewById(R.id.emailid);
         phone1=(EditText)findViewById(R.id.phoneNo);
         firebaseAuth = FirebaseAuth.getInstance();
+        text4=(TextView)findViewById(R.id.textView4);
+        text5=(TextView)findViewById(R.id.textView5);
+        text6=(TextView)findViewById(R.id.textView6);
+        text7=(TextView)findViewById(R.id.textView7);
 
 
         register1.setOnClickListener(new View.OnClickListener() {

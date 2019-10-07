@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private static final String TAG ="MainActivity";
-
+    private TextView text2,text3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         pass =(EditText)findViewById(R.id.password);
         signup =(Button)findViewById(R.id.signupbtn);
         login = (Button) findViewById(R.id.btnlogin);
+        text2=(TextView)findViewById(R.id.textView2);
+        text3=(TextView)findViewById(R.id.textView3);
 
         if(firebaseAuth.getCurrentUser()!=null && firebaseAuth.getCurrentUser().isEmailVerified()){
             //finish();

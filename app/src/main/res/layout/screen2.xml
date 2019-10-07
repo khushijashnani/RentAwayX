@@ -20,7 +20,6 @@
         android:layout_marginEnd="98dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/email_id"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -38,7 +37,6 @@
         android:layout_marginEnd="98dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/phone_no"
         android:inputType="phone" />
 
     <EditText
@@ -55,7 +53,6 @@
         android:layout_marginEnd="98dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/userid"
         android:inputType="textPersonName" />
 
     <EditText
@@ -73,7 +70,6 @@
         android:layout_marginEnd="98dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/pass"
         android:inputType="textPassword" />
 
     <Button
@@ -93,5 +89,45 @@
         android:layout_marginEnd="78dp"
         android:layout_marginBottom="180dp"
         android:text="Register" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="61dp"
+        android:text="@string/userid" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="133dp"
+        android:text="@string/email_id" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="206dp"
+        android:text="@string/phone_no" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="280dp"
+        android:text="@string/pass" />
 
 </RelativeLayout>

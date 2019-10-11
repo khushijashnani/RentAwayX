@@ -129,8 +129,12 @@ public class navigationDrawer extends AppCompatActivity
 
         } else if (id == R.id.contacted_properties) {
 
-        } else if (id == R.id.house_icon) {
-            fragment = new RentMyProperty();
+        } else if (id == R.id.my_home) {
+            startActivity(new Intent(this,navigationDrawer.class));
+        }
+        else if(id == R.id.rent_property)
+        {
+            fragment=new RentMyProperty();
         }
 
         if(fragment!=null){
